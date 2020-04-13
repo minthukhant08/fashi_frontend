@@ -173,7 +173,14 @@
 
   function addToCart(para) {
     para.Qty = 1;
-    para.price= para.price - para.promotion.amount;
+    try {
+      para.price= para.price - para.promotion.amount;
+    } catch (e) {
+
+    } finally {
+
+    }
+
       // update qty if product is already present
       for (var i in cart) {
           if(cart[i].id == para.id)

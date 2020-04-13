@@ -89,7 +89,7 @@
                         <button type="button" class="category-btn">Welcome &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
                         <div class="input-group">
                             <input type="text" id="menu_key" placeholder="What do you need?">
-                            <button type="button" onclick="search();"><i class="ti-search"></i></button>
+                            <button type="button" onclick="search('shop');"><i class="ti-search"></i></button>
                         </div>
                     </div>
                 </div>

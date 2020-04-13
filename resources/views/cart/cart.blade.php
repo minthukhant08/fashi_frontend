@@ -28,7 +28,7 @@
                         <div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
                                 <ul>
-                                    {{-- <li class="subtotal" >Subtotal <span id="maincartsubtotal"></span></li> --}}
+                                    <li class="fw-normal">Delivery <span>5000 MMK</span></li>
                                     <li class="cart-total">Total <span id="maincarttotal"></span></li>
                                 </ul>
                                 <a href="/checkout" class="proceed-btn">PROCEED TO CHECK OUT</a>

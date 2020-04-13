@@ -50,7 +50,7 @@
                                     <div id="checkout" style="padding-top:10px;">
 
                                     </div>
-                                    {{-- <li class="fw-normal">Subtotal <span id="checkoutsubtotal"></span></li> --}}
+                                    <li class="fw-normal">Delivery <span>5000 MMK (Delivery within 2 weeks)</span></li>
                                     <li class="total-price">Total <span id="checkouttotal"></span></li>
                                 </ul>
                                 <div class="payment-check">

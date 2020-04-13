@@ -15,7 +15,12 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 Route::get('/shop', 'ShopController@index');
+Route::get('/promotion', 'ShopController@Promotion');
 
 Route::get('/cart', 'CartController@index');
 

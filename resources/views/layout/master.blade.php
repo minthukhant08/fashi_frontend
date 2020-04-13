@@ -2,11 +2,11 @@
 <html lang="en" dir="ltr">
   <head>
       <meta charset="UTF-8">
-      <meta name="description" content="Fashi Template">
+      <meta name="description" content="Fashi">
       <meta name="keywords" content="Fashi, unica, creative, html">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Fashi | Template</title>
+      <title>Fashi</title>
       <!-- Google Font -->
       <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
@@ -173,6 +173,7 @@
 
   function addToCart(para) {
     para.Qty = 1;
+    para.price= para.price - para.promotion.amount;
       // update qty if product is already present
       for (var i in cart) {
           if(cart[i].id == para.id)
@@ -235,9 +236,41 @@
       $('#cartbutton').append("<a href='/cart' class='primary-btn view-card'>VIEW CART</a><a href='/checkout' class='primary-btn checkout-btn'>CHECK OUT</a>")
     }
   }
+
  function removespace(val) {
    return val.replace(/ /g,"")
  }
+
+ function search(root){
+   var keyword = $('#keyword').val();
+   var menu_key = $('#menu_key').val();
+   if (menu_key!=null) {
+     keyword=menu_key;
+   }
+   var data ={
+      brands:brands,
+      categories:categories,
+      types:types,
+      keyword:keyword
+   }
+   console.log(data);
+   data = $.param(data);
+   console.log(data);
+   $.ajax({
+     url : '/shop',
+     type: 'get',
+     data : data ,
+     traditional: true,
+     statusCode: {
+        200: function (response) {
+          location.href="/"+root+"?" + data;
+        }
+     }
+   }).done(function(response){ //
+     // location.href="/thanks";
+   });
+ };
+
   </script>
   @yield('script')
 </html>

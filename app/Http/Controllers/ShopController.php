@@ -39,13 +39,89 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $para_categories = isset($request->categories)? $request->categories : [];
+        $cat_arr = array();
+        $brand_arr = array();
+        $type_arr = array();
+        foreach ($para_categories as $value) {
+          try {
+            $cat_arr[] = json_decode($value)->id;
+          } catch (\Exception $e) {
+
+          }
+
+        }
+        $para_brands = isset($request->brands)? $request->brands : [];
+        foreach ($para_brands as $value) {
+          try {
+            $brand_arr[] = json_decode($value)->id;
+          } catch (\Exception $e) {
+
+          }
+
+        }
+
+        $para_types =  isset($request->types)? $request->types : [];
+        foreach ($type_arr as $value) {
+          try {
+            $type_arr[] = json_decode($value)->id;
+          } catch (\Exception $e) {
+
+          }
+
+        }
+        $para_keyword = isset($request->keyword)? $request->keyword : '%';
         $categories = $this->categoryInterface->getAll();
-        $products = $this->productInterface->getAll();
+        $products = $this->productInterface->search($cat_arr,$brand_arr,$type_arr, $para_keyword  );
         $brands = $this->brandInterface->getAll();
         $types = $this->typeInterface->getAll();
         return view('shop.shop')->with('categories', $categories)
+                                ->with('products', $products)
+                                ->with('brands', $brands)
+                                ->with('types', $types);
+    }
+
+    public function promotion(Request $request)
+    {
+        $para_categories = isset($request->categories)? $request->categories : [];
+        $cat_arr = array();
+        $brand_arr = array();
+        $type_arr = array();
+        foreach ($para_categories as $value) {
+          try {
+            $cat_arr[] = json_decode($value)->id;
+          } catch (\Exception $e) {
+
+          }
+
+        }
+        $para_brands = isset($request->brands)? $request->brands : [];
+        foreach ($para_brands as $value) {
+          try {
+            $brand_arr[] = json_decode($value)->id;
+          } catch (\Exception $e) {
+
+          }
+
+        }
+
+        $para_types =  isset($request->types)? $request->types : [];
+        foreach ($type_arr as $value) {
+          try {
+            $type_arr[] = json_decode($value)->id;
+          } catch (\Exception $e) {
+
+          }
+
+        }
+        $para_keyword = isset($request->keyword)? $request->keyword : '%';
+        $categories = $this->categoryInterface->getAll();
+        $products = $this->productInterface->searchPromo($cat_arr,$brand_arr,$type_arr, $para_keyword  );
+        $brands = $this->brandInterface->getAll();
+        $types = $this->typeInterface->getAll();
+        return view('shop.promo')->with('categories', $categories)
                                 ->with('products', $products)
                                 ->with('brands', $brands)
                                 ->with('types', $types);

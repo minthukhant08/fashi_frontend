@@ -8,4 +8,6 @@ interface ProductRepositoryInterface{
   public function update($request, $id);
   public function delete($id);
   public function substractQty($id, $qty);
+  public function search($categories, $brands, $types, $keyword );
+  public function searchPromo($categories, $brands, $types, $keyword );
 }

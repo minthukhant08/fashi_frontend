@@ -19,6 +19,57 @@ class ProductRepository implements ProductInterface
     return $this->product::with(['brand', 'category', 'promotion'])->whereNull('deleted_at')->orderBy('created_at','desc')->paginate(9);
   }
 
+  public function search($categories, $brands, $types, $keyword ){
+     // dd($this->product::with(['brand', 'category', 'promotion'])->whereNull('deleted_at')->orderBy('created_at','desc')->get());
+    return $this->product::with(['brand', 'category', 'type', 'promotion'])
+                          ->whereHas('brand', function ($query) use($brands){
+                              if (count($brands)>0) {
+                                $query->whereIn('id',$brands);
+                              }
+                          })
+                          ->whereHas('category', function ($query) use($categories){
+                              if (count($categories)>0) {
+                                $query->whereIn('id',$categories);
+                              }
+                          })
+                          ->whereHas('type', function ($query) use($types){
+                              if (count($types)>0) {
+                                $query->whereIn('id',$types);
+                              }
+                          })
+                          ->where([
+                            ['name', 'like', '%'.$keyword.'%'],
+                            ['promotion_id', '=', null]
+                          ])
+                          ->whereNull('deleted_at')->orderBy('created_at','desc')->paginate(9);
+  }
+
+  public function searchPromo($categories, $brands, $types, $keyword ){
+     // dd($this->product::with(['brand', 'category', 'promotion'])->whereNull('deleted_at')->orderBy('created_at','desc')->get());
+    return $this->product::with(['brand', 'category', 'type', 'promotion'])
+                          ->whereHas('brand', function ($query) use($brands){
+                              if (count($brands)>0) {
+                                $query->whereIn('id',$brands);
+                              }
+                          })
+                          ->whereHas('category', function ($query) use($categories){
+                              if (count($categories)>0) {
+                                $query->whereIn('id',$categories);
+                              }
+                          })
+                          ->whereHas('type', function ($query) use($types){
+                              if (count($types)>0) {
+                                $query->whereIn('id',$types);
+                              }
+                          })
+                          ->where([
+                            ['name', 'like', '%'.$keyword.'%'],
+                            ['promotion_id', '!=', null]
+                          ])
+                          ->whereNull('deleted_at')->orderBy('created_at','desc')->paginate(9);
+  }
+
+
   public function find($id)
   {
     return $this->product::where('id', '=', $id)->first();

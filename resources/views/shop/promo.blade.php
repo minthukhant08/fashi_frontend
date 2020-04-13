@@ -76,7 +76,7 @@
                   </div>
                   <div >
                     <input onclick="clearFilter();" type="button" name="" value="Clear" class="btn btn-light">&nbsp;&nbsp;
-                    <input onclick="search('shop');" type="submit" id="apply" name="" value="Apply" class="btn btn-primary">
+                    <input onclick="search('promotion');" type="submit" id="apply" name="" value="Apply" class="btn btn-primary">
                   </div>
 
               </div>
@@ -105,7 +105,7 @@
                                         </a>
                                         <div class="catagory-name">{{$product->category->name}}</div>
                                         <div class="product-price">
-                                            {{$product->price}} MMK
+                                            {{$product->price - $product->promotion->amount}} MMK
                                         </div>
 
                                     </div>

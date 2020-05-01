@@ -80,7 +80,7 @@
     var categories=[];
     var brands=[];
     var types=[];
-    var host_url = "http://localhost:8000";
+    var host_url = "http://localhost:9000";
   </script>
   <script type="text/javascript">
 

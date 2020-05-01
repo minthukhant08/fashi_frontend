@@ -89,7 +89,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic" style="height:200px;">
-                                        <img src="http://localhost:8000{{$product->image}}" alt="" style="height:100%;">
+                                        <img src="http://localhost:9000{{$product->image}}" alt="" style="height:100%;">
                                         {{-- <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div> --}}
